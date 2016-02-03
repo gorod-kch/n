@@ -87,6 +87,7 @@ main {
 
 .question {
     font-size: 35px;
+    font-family: "Calibri Light";
 }
 .answers {
     padding: 0;
@@ -96,6 +97,7 @@ main {
     padding:0;
 }
 .answers li a {
+    font-family: "Calibri Light";
     display: block;
     padding:5px;
     margin: 10px;
