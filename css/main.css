@@ -27,6 +27,9 @@ textarea {
     resize: vertical;
 }
 
+a {
+    text-decoration: none;
+}
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
@@ -40,6 +43,12 @@ html, body {
     margin:0;
     height: 100%;
 }
+
+body {
+    font-family: "Calibri Light";
+    font-size: 20px;
+}
+
 .header {
     background: url('../img/header.png');
     background-size: 100% 200px;
@@ -51,14 +60,17 @@ html, body {
     color: #fff;
     transform:rotate(-4deg);
     display: inline-block;
-     margin:10px;
+    margin:10px;
+    font-family: "Calibri Light";
+    text-transform: uppercase;
 }
 
 .header .public-link {
     color:#fff;
     float:right;
     transform:rotate(5deg);
-    margin:10px;
+    margin:30px;
+    font-size: 30px;
 }
 
 main {
@@ -75,7 +87,10 @@ main {
 }
 .progress li {
     display: inline-block;
-    padding: 5px 15px;
+    text-align: center;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
     margin-right:5px;
 }
 
@@ -89,6 +104,7 @@ main {
 .question {
     font-size: 35px;
     font-family: "Calibri Light";
+    text-transform: uppercase;
 }
 .answers {
     padding: 0;
@@ -106,6 +122,7 @@ main {
     font-size: 25px;
     text-decoration: none;
     color:#000;
+    text-transform: uppercase;
 }
 
 .answers li:hover {
@@ -135,7 +152,7 @@ main {
     height: 200px;
     width: 100%;
     text-align: right;
-    padding: 150px 50px 50px 0;
+    padding: 120px 100px 50px 0;
     font-size: 20px;
     color:#fff;
 }
