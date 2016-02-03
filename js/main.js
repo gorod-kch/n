@@ -80,3 +80,48 @@ var test = [
     }
 ];
 
+var question = 0; // 1 потому что первый вопрос в html прописан
+var result = 0;
+
+for (var i = 0; i < test.length; i++) {
+	$('.progress').append('<li>'+(i+1)+'</li>');
+}
+$('.progress li').eq(0).addClass('active');
+
+$('.answers').on('click', 'li a', function(e) {
+	e.preventDefault();
+
+	result += $(this).parent('li').data('p');
+
+	if (question == test.length-1) {
+		showResult();
+		return;
+	}
+
+	var nextQuestion = question+1;
+
+
+
+
+	$('.progress li').removeClass('active');
+	$('.progress li').eq(question).addClass('archive');
+
+	// Next question
+	$('.progress li').eq(nextQuestion).addClass('active');
+	$('.question').text(Object.keys(test[nextQuestion]));
+	$('.face').attr('src', 'img/faces/'+(nextQuestion+1)+'.png');
+
+	$('.answers li').remove();
+	$.each(test[nextQuestion][ Object.keys(test[nextQuestion]) ], function(index, val) {
+		$('.answers').append('<li data-p="'+val+'"><a href="#">'+ index +'</a></li>');
+	});
+
+	question = nextQuestion;
+});
+
+
+function showResult(){
+	$('main').hide();
+	$('.result').show();
+	$('.percentage').text(result);
+}

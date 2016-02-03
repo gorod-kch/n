@@ -120,6 +120,12 @@ main {
     z-index: -1;
 }
 
+.result {
+    display: none;
+    text-align: center;
+    margin-top:15%;
+    height:50%;
+}
 
 .footer {
     background: url('../img/footer.png');
@@ -137,12 +143,6 @@ main {
     color: #fff;
     text-decoration: none;
 }
-
-
-
-
-
-
 
 
 
