@@ -92,10 +92,17 @@ main {
     padding: 0;
 }
 .answers li {
-    padding:10px;
+    list-style-type: none;
+    padding:0;
+}
+.answers li a {
+    display: block;
+    padding:5px;
     margin: 10px;
     list-style-type: none;
     font-size: 25px;
+    text-decoration: none;
+    color:#000;
 }
 
 .answers li:hover {
