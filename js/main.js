@@ -80,6 +80,16 @@ var test = [
     }
 ];
 
+var specials = {
+	// вопрос с нуля — процент
+	"1-3":function(){
+		alert('Почему бы нет?');
+	},
+	"6-0": function(){
+		alert('Facepalm');
+	}
+};
+
 var question = 0; // 1 потому что первый вопрос в html прописан
 var result = 0;
 
@@ -91,15 +101,18 @@ $('.progress li').eq(0).addClass('active');
 $('.answers').on('click', 'li a', function(e) {
 	e.preventDefault();
 
-	result += $(this).parent('li').data('p');
+	var percent = $(this).parent('li').data('p');
 
+	// Прибавляем баллы за ответ
+	result += percent;
+
+	// Если это был последний вопрос — выведем результат
 	if (question == test.length-1) {
 		showResult();
 		return;
 	}
 
 	var nextQuestion = question+1;
-
 
 
 
@@ -115,6 +128,10 @@ $('.answers').on('click', 'li a', function(e) {
 	$.each(test[nextQuestion][ Object.keys(test[nextQuestion]) ], function(index, val) {
 		$('.answers').append('<li data-p="'+val+'"><a href="#">'+ index +'</a></li>');
 	});
+
+	if(typeof specials[question + "-" + percent] == "function"){
+		specials[question + "-" + percent]();
+	}
 
 	question = nextQuestion;
 });
