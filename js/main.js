@@ -83,11 +83,13 @@ var test = [
 var question = 0; // 1 потому что первый вопрос в html прописан
 var result = 0;
 
+// Заполняем прогресс
 for (var i = 0; i < test.length; i++) {
 	$('.progress').append('<li>'+(i+1)+'</li>');
 }
 $('.progress li').eq(0).addClass('active');
 
+// Действие по клику на ответ
 $('.answers').on('click', 'li a', function(e) {
 	e.preventDefault();
 
@@ -100,21 +102,25 @@ $('.answers').on('click', 'li a', function(e) {
 
 	var nextQuestion = question+1;
 
+    // Анимация
+    $('main').fadeOut(function(){
+        $('.progress li').removeClass('active');
+        $('.progress li').eq(question).addClass('archive');
+
+        // Next question
+        $('.progress li').eq(nextQuestion).addClass('active');
 
 
+        $('.question').text(Object.keys(test[nextQuestion]));
 
-	$('.progress li').removeClass('active');
-	$('.progress li').eq(question).addClass('archive');
+        $('.face').attr('src', 'img/faces/'+(nextQuestion+1)+'.png');
 
-	// Next question
-	$('.progress li').eq(nextQuestion).addClass('active');
-	$('.question').text(Object.keys(test[nextQuestion]));
-	$('.face').attr('src', 'img/faces/'+(nextQuestion+1)+'.png');
 
-	$('.answers li').remove();
-	$.each(test[nextQuestion][ Object.keys(test[nextQuestion]) ], function(index, val) {
-		$('.answers').append('<li data-p="'+val+'"><a href="#">'+ index +'</a></li>');
-	});
+        $('.answers li').remove();
+        $.each(test[nextQuestion][ Object.keys(test[nextQuestion]) ], function(index, val) {
+            $('.answers').append('<li data-p="'+val+'"><a href="#">'+ index +'</a></li>');
+        });
+    }).fadeIn();
 
 	question = nextQuestion;
 });
