@@ -133,7 +133,7 @@ $('.answers').on('click', 'li a', function(e) {
     // Анимация
     $('main').fadeOut(function(){
         $('.progress li').removeClass('active');
-        $('.progress li').eq(question).addClass('archive');
+        //$('.progress li').eq(question).addClass('archive');
 
         // Next question
         $('.progress li').eq(nextQuestion).addClass('active');
