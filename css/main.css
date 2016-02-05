@@ -45,7 +45,7 @@ html, body {
 }
 
 body {
-    font-family: "Calibri Light";
+    font-family: "Calibri Light", "Calibri", "Helvetica", "Arial"
     font-size: 20px;
 }
 
@@ -61,7 +61,6 @@ body {
     transform:rotate(-4deg);
     display: inline-block;
     margin:10px;
-    font-family: "Calibri Light";
     text-transform: uppercase;
 }
 
@@ -103,7 +102,6 @@ main {
 
 .question {
     font-size: 35px;
-    font-family: "Calibri Light";
     text-transform: uppercase;
 }
 .answers {
@@ -114,7 +112,6 @@ main {
     padding:0;
 }
 .answers li a {
-    font-family: "Calibri Light";
     display: block;
     padding:5px;
     margin: 10px;
