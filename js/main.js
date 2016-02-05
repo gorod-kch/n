@@ -93,11 +93,13 @@ var specials = {
 var question = 0; // 1 потому что первый вопрос в html прописан
 var result = 0;
 
+// Заполняем прогресс
 for (var i = 0; i < test.length; i++) {
 	$('.progress').append('<li>'+(i+1)+'</li>');
 }
 $('.progress li').eq(0).addClass('active');
 
+// Действие по клику на ответ
 $('.answers').on('click', 'li a', function(e) {
 	e.preventDefault();
 
@@ -114,20 +116,24 @@ $('.answers').on('click', 'li a', function(e) {
 
 	var nextQuestion = question+1;
 
+    // Анимация
+    $('main').fadeOut(function(){
+        $('.progress li').removeClass('active');
+        $('.progress li').eq(question).addClass('archive');
+
+        // Next question
+        $('.progress li').eq(nextQuestion).addClass('active');
+
+        $('.question').text(Object.keys(test[nextQuestion]));
+
+        $('.face').attr('src', 'img/faces/'+(nextQuestion+1)+'.png');
 
 
-	$('.progress li').removeClass('active');
-	$('.progress li').eq(question).addClass('archive');
-
-	// Next question
-	$('.progress li').eq(nextQuestion).addClass('active');
-	$('.question').text(Object.keys(test[nextQuestion]));
-	$('.face').attr('src', 'img/faces/'+(nextQuestion+1)+'.png');
-
-	$('.answers li').remove();
-	$.each(test[nextQuestion][ Object.keys(test[nextQuestion]) ], function(index, val) {
-		$('.answers').append('<li data-p="'+val+'"><a href="#">'+ index +'</a></li>');
-	});
+        $('.answers li').remove();
+        $.each(test[nextQuestion][ Object.keys(test[nextQuestion]) ], function(index, val) {
+            $('.answers').append('<li data-p="'+val+'"><a href="#">'+ index +'</a></li>');
+        });
+    }).fadeIn();
 
 	if(typeof specials[question + "-" + percent] == "function"){
 		specials[question + "-" + percent]();
@@ -138,7 +144,21 @@ $('.answers').on('click', 'li a', function(e) {
 
 
 function showResult(){
+    $explanation = $('.result-explanation');
+    if(result <= 35) {
+        $explanation.html('Твой внутренний Набоких очень мал, его и твои взгляды на жизнь диаметрально противоположны. <br>Вероятней всего, ты считаешь Сергея Набоких плохим управленцем и во всех городских проблемах винишь только его. ');
+    } else if (result <= 70) {
+        $explanation.html('Твой внутренний Сергей Набоких на среднем уровне. Это означает, что между тобой и главой города есть что-то общее: в мировоззрении, культурных предпочтениях и не только. Но нельзя забывать и о разногласиях.<br>Разбираясь в городских проблемах, ты не спешишь кого-то обвинять, а стараешься подойти к вопросу максимально объективно. ');
+    } else if (result <= 100) {
+        $explanation.html('Твой внутренний Сергей Набоких необычайно велик. Если бы выборы мэра не отменили, твой внутренний голос обязательно заставил тебя поставить галочку напротив его имени. Может и неосознанно, но тем не менее ты поддерживаешь действующего главу почти во всех вопросах. Ты искренне веришь в его честность и непогрешимость. Именно такие люди как ты и являются электоратом и опорой местной власти.');
+    }
 	$('main').hide();
-	$('.result').show();
 	$('.percentage').text(result);
+    $('.result').show();
+}
+
+
+// Прелоад
+for (var i = 1; i <= test.length; i++) {
+    $("<img />").attr("src", 'img/faces/' + i + '.png');
 }

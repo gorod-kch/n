@@ -45,7 +45,7 @@ html, body {
 }
 
 body {
-    font-family: "Calibri Light";
+    font-family: "Calibri Light", "Calibri", "Helvetica", "Arial"
     font-size: 20px;
 }
 
@@ -61,7 +61,6 @@ body {
     transform:rotate(-4deg);
     display: inline-block;
     margin:10px;
-    font-family: "Calibri Light";
     text-transform: uppercase;
 }
 
@@ -76,7 +75,6 @@ body {
 main {
     max-width: 500px;
     margin: 20px auto;
-    min-height: 100%;
     margin-bottom: -200px;
 }
 
@@ -103,7 +101,6 @@ main {
 
 .question {
     font-size: 35px;
-    font-family: "Calibri Light";
     text-transform: uppercase;
 }
 .answers {
@@ -114,7 +111,6 @@ main {
     padding:0;
 }
 .answers li a {
-    font-family: "Calibri Light";
     display: block;
     padding:5px;
     margin: 10px;
@@ -139,9 +135,11 @@ main {
 
 .result {
     display: none;
-    text-align: center;
-    margin-top:15%;
+    font-size: 30px;
+    margin: 0 auto;
+    margin-top:100px;
     height:50%;
+    max-width: 700px;
 }
 
 .footer {
