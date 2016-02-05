@@ -182,9 +182,9 @@ main {
 }
 
 .face {
-    width:100%;
+    width:70%;
     position: absolute;
-    bottom: 0;
+    bottom: 50px;
     left: 0;
     z-index: -1;
 }
