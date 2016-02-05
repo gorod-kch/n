@@ -83,15 +83,22 @@ var test = [
 var specials = {
 	// вопрос с нуля — процент
 	"1-3":function(){
-		alert('Почему бы нет?');
+		$('main').hide();
+		$('.special-text').text('ХММ... А ПОЧЕМУ БЫ И НЕТ?..');
+		$('.face').attr('src', 'img/faces/why-not.png');
+		$('.special').show();
 	},
 	"6-0": function(){
-		alert('Facepalm');
+		$('main').hide();
+		$('.face').attr('src', 'img/faces/facepalm.png');
+		$('.special-text').text('БОООЖЕ... КАКИЕ МАСОНЫ?!..');
+		$('.special').show();
 	}
 };
 
 var question = 0; // 1 потому что первый вопрос в html прописан
 var result = 0;
+var isSpecial = false;
 
 // Заполняем прогресс
 for (var i = 0; i < test.length; i++) {
@@ -116,6 +123,13 @@ $('.answers').on('click', 'li a', function(e) {
 
 	var nextQuestion = question+1;
 
+	if(typeof specials[question + "-" + percent] == "function"){
+		isSpecial = true;
+		specials[question + "-" + percent]();
+	} else {
+		isSpecial = false;
+	}
+
     // Анимация
     $('main').fadeOut(function(){
         $('.progress li').removeClass('active');
@@ -126,20 +140,29 @@ $('.answers').on('click', 'li a', function(e) {
 
         $('.question').text(Object.keys(test[nextQuestion]));
 
-        $('.face').attr('src', 'img/faces/'+(nextQuestion+1)+'.png');
+
 
 
         $('.answers li').remove();
         $.each(test[nextQuestion][ Object.keys(test[nextQuestion]) ], function(index, val) {
             $('.answers').append('<li data-p="'+val+'"><a href="#">'+ index +'</a></li>');
         });
-    }).fadeIn();
 
-	if(typeof specials[question + "-" + percent] == "function"){
-		specials[question + "-" + percent]();
-	}
+        if(!isSpecial){
+        	$('.face').attr('src', 'img/faces/'+(nextQuestion+1)+'.png');
+        	$('main').fadeIn();
+        }
+    });
+
 
 	question = nextQuestion;
+});
+
+$('.special').on('click', function(event) {
+	event.preventDefault();
+
+	$(this).hide();
+	$('main').show();
 });
 
 
@@ -147,9 +170,12 @@ function showResult(){
     $explanation = $('.result-explanation');
     if(result <= 35) {
         $explanation.html('Твой внутренний Набоких очень мал, его и твои взгляды на жизнь диаметрально противоположны. <br>Вероятней всего, ты считаешь Сергея Набоких плохим управленцем и во всех городских проблемах винишь только его. ');
+    	$('.face').attr('src', '../img/35.png');
     } else if (result <= 70) {
         $explanation.html('Твой внутренний Сергей Набоких на среднем уровне. Это означает, что между тобой и главой города есть что-то общее: в мировоззрении, культурных предпочтениях и не только. Но нельзя забывать и о разногласиях.<br>Разбираясь в городских проблемах, ты не спешишь кого-то обвинять, а стараешься подойти к вопросу максимально объективно. ');
+    	$('.face').attr('src', '../img/70.png');
     } else if (result <= 100) {
+    	$('.face').attr('src', '../img/100.png');
         $explanation.html('Твой внутренний Сергей Набоких необычайно велик. Если бы выборы мэра не отменили, твой внутренний голос обязательно заставил тебя поставить галочку напротив его имени. Может и неосознанно, но тем не менее ты поддерживаешь действующего главу почти во всех вопросах. Ты искренне веришь в его честность и непогрешимость. Именно такие люди как ты и являются электоратом и опорой местной власти.');
     }
 	$('main').hide();
@@ -162,3 +188,8 @@ function showResult(){
 for (var i = 1; i <= test.length; i++) {
     $("<img />").attr("src", 'img/faces/' + i + '.png');
 }
+$("<img />").attr("src", 'img/faces/why-not.png');
+$("<img />").attr("src", 'img/faces/facepalm.png');
+$("<img />").attr("src", 'img/35.png');
+$("<img />").attr("src", 'img/70.png');
+$("<img />").attr("src", 'img/100.png');
