@@ -125,3 +125,9 @@ function showResult(){
 	$('.result').show();
 	$('.percentage').text(result);
 }
+
+
+// Прелоад
+for (var i = 1; i <= test.length; i++) {
+    $("<img />").attr("src", 'img/faces/' + i + '.png');
+}
