@@ -163,6 +163,7 @@ $('.special').on('click', function(event) {
 
 	$(this).hide();
 	$('main').show();
+    $('.face').attr('src', 'img/faces/' + (question+1) + '.png');
 });
 
 
