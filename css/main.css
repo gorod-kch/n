@@ -111,7 +111,7 @@ main {
 }
 .answers li a {
     display: block;
-    padding:5px;
+    padding:10px;
     margin: 10px;
     list-style-type: none;
     font-size: 25px;
@@ -194,6 +194,32 @@ main {
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-
+@media only screen and (min-width: 1300px) {
+    .question {
+        font-size: 25px;
+    }
+    .answers li a {
+        font-size: 20px
+    }
+    .header {
+        background-size: 100% 150px;
+        height: 150px;
+    }
+    .progress {
+        margin-bottom: 5px;
+    }
+    .result {
+        margin-top:0;
+    }
+    .footer {
+        height: 100px !important;
+        padding:10px;
+        background-size: 100% 100%;
+    }
+    .footer p {
+        margin-top: 50px;
+    }
+    main {
+        margin-top:0;
+    }
 }
