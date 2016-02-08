@@ -126,6 +126,11 @@ $('.answers').on('click', 'li a', function(e) {
 	if(typeof specials[question + "-" + percent] == "function"){
 		isSpecial = true;
 		specials[question + "-" + percent]();
+		setTimeout(function(){
+			$('.special').hide();
+			$('main').show();
+    			$('.face').attr('src', 'img/faces/' + (question+1) + '.png');
+		},1000);
 	} else {
 		isSpecial = false;
 	}
@@ -158,13 +163,13 @@ $('.answers').on('click', 'li a', function(e) {
 	question = nextQuestion;
 });
 
-$('.special').on('click', function(event) {
+/*$('.special').on('click', function(event) {
 	event.preventDefault();
 
 	$(this).hide();
 	$('main').show();
     $('.face').attr('src', 'img/faces/' + (question+1) + '.png');
-});
+});*/
 
 
 function showResult(){
