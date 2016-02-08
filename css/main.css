@@ -42,10 +42,10 @@ a {
 html, body {
     margin:0;
     height: 100%;
+    font-family: 'calibri light';
 }
 
 body {
-    font-family: 'calibri light';
     font-size: 20px;
 }
 
