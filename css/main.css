@@ -44,7 +44,7 @@ html, body {
     margin:0;
     height: 700px;
     width:1000px;
-    font-family: 'calibri light', calibri, 'Calibri';
+    font-family: 'calibri light', calibri, Calibri,Candara,Segoe,Segoe UI,Optima,Arial,sans-serif;
 }
 
 body {
