@@ -114,10 +114,10 @@ setTimeout(function(){
 }, 3000);
 
 // Действие по клику на ответ
-$('.answers').on('click', 'li a', function(e) {
+$('.answers').on('click', 'li', function(e) {
     e.preventDefault();
 
-    var percent = $(this).parent('li').data('p');
+    var percent = $(this).data('p');
 
     // Прибавляем баллы за ответ
     result += percent;
@@ -157,7 +157,7 @@ $('.answers').on('click', 'li a', function(e) {
 
         $('.answers li').remove();
         $.each(test[nextQuestion][ Object.keys(test[nextQuestion]) ], function(index, val) {
-            $('.answers').append('<li data-p="'+val+'"><a href="#">'+ index +'</a></li>');
+            $('.answers').append('<li data-p="'+val+'">'+ index +'</li>');
         });
 
         if(!isSpecial){
@@ -169,14 +169,6 @@ $('.answers').on('click', 'li a', function(e) {
 
     question = nextQuestion;
 });
-
-/*$('.special').on('click', function(event) {
-    event.preventDefault();
-
-    $(this).hide();
-    $('main').show();
-    $('.face').attr('src', 'img/faces/' + (question+1) + '.png');
-});*/
 
 
 function showResult(){
